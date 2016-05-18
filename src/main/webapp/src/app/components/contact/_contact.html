@@ -1,0 +1,59 @@
+<div class="container-contact container" ng-controller="ContactController as contactC">
+
+    <header class="title-section">
+      <h1>Contato</h1>
+      <p>Entre em contanto conosco através do formulario abaixo.</p>
+    </header>
+
+    <div class="col-lg-6 no-padding">
+      <form name="contactForm">
+        <div class="form-group has-feedback">
+          <label class="control-label" for="name">
+            Nome
+          </label>
+          <input id="name" type="text" class="form-control" placeholder="Nome"
+                 ng-required="true" ng-model="contactC.contact.name" required>
+        </div>
+
+        <div class="form-group has-feedback">
+          <label class="control-label" for="userEmail">
+            E-mail
+          </label>
+          <input id="userEmail" type="email" class="form-control" placeholder="Email"
+                 ng-required="true" ng-model="contactC.contact.email" required>
+        </div>
+
+        <div class="form-group has-feedback">
+          <label class="control-label" for="issue">
+            Assunto
+          </label>
+          <select id="issue" class="form-control"
+                  ng-model="contactC.contact.subject" ng-required="true"
+                  ng-options="issue as issue for issue in contactC.issues">
+          </select>
+        </div>
+
+        <div class="form-group has-feedback">
+          <label class="control-label" for="message">
+            Mensagem
+          </label>
+          <textarea id="message" class="form-control" rows="5"  placeholder="Digite sua mensagem"
+                    ng-required="true" ng-model="contactC.contact.message">
+          </textarea>
+        </div>
+
+        <div style="padding: 10px 0 20px 0"
+          vc-recaptcha key="contactC.captchaKey"
+          on-create="contactC.setWidgetId(widgetId)"
+          on-success="contactC.setResponse(response)"
+          on-expire="contactC.cbExpiration()">
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg"
+                style="width: 215px; margin-bottom: 20px" ng-click="contactC.send()" ng-disabled="contactForm.$invalid || !contactC.captchaValid">
+          <span class="ng-scope">Enviar</span>
+        </button>
+      </form>
+    </div>
+
+</div>

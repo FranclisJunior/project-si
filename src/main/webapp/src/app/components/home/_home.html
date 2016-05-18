@@ -1,0 +1,18 @@
+<div ng-controller="HomeController as homeC" data-ng-init="homeC.initHome()">
+
+  <div class="background-home-main">
+    <div class="container-home-main container">
+      <div class="offsetspan6">
+        <uib-carousel interval="5000">
+          <uib-slide ng-repeat="banner in homeC.banners">
+            <a ng-href="{{banner.url}}">
+              <img title="" class="image-circle container-events" ng-src="{{banner.picture}}"/>
+            </a>
+          </uib-slide>
+        </uib-carousel>
+      </div>
+    </div>
+  </div>
+  <!-- /banner & sponsor -->
+
+</div>

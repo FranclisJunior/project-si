@@ -1,0 +1,20 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/project_si?createDatabaseIfNotExist=true
+    username: root
+    password: turmalina
+    testOnBorrow: true
+    validationQuery: SELECT 1
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      ddl-auto: update
+  security:
+    sessions: NEVER
+    basic:
+      realm: Turmalina
+ 

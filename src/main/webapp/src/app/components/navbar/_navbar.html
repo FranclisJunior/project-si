@@ -1,0 +1,91 @@
+<div ng-controller="AuthController as authC" ng-init="navBarC.initNavBar()">
+
+  <nav class="navbar navbar-fixed-top" role="navigation">
+
+    <div class="navbar-header">
+
+      <a class="navbar-brand ng-scope" ng-href="/home" ng-click="navBarC.setNavBarActive('#tabHome')">
+        <img alt="brand" src="assets/images/logo-navbar.png">
+      </a>
+
+      <button id="navbar-toggle-collapsed" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#side-menu"
+              aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span style="background:white" class="icon-bar"></span>
+        <span style="background:white" class="icon-bar"></span>
+        <span style="background:white" class="icon-bar"></span>
+      </button>
+
+    </div>
+
+    <div class="collapse navbar-collapse" id="side-menu">
+
+      <ul id="navBarItems" class="nav navbar-nav">
+
+        <li class="upper-level-nav">
+          <a id="tabHome" ng-href="/home" ng-click="navBarC.setNavBarActive('#tabHome')">
+            Home
+          </a>
+        </li>
+        <li class="upper-level-nav">
+          <a id="tabNews" ng-href="" target="_blank">Notícias</a>
+        </li>
+      </ul>
+
+      <ul class="nav navbar-right top-nav">
+
+        <li class="upper-level-nav" ng-show="authC.user.email === undefined">
+          <a ng-click="authC.showAuthModal('login')" class="auth-menu">
+            Entrar
+          </a>
+        </li>
+
+        <li class="upper-level-nav">
+          <div ng-show="authC.user.email !== undefined" class="dropdown">
+            <ul class="nav navbar-right top-nav">
+              <li class="dropdown">
+
+                <a class="dropdown-toggle" data-toggle="dropdown" style="padding: 10px 5px 10px 5px">
+                  <img style="width: 40px; height: 40px"
+                       src="{{authC.user.picture !== 'none' ? authC.user.picture : '/assets/images/background-picture.png'}}">
+                  <i style="padding: 10px" class="fa fa-caret-down"></i>
+                </a>
+
+                <ul class="dropdown-menu">
+                  <li>
+                    <a ng-href="/account/me" ng-click="navBarC.hideNavBar();">
+                      <i style="color: #801515" class="fa fa-fw fa-user"></i> Minha Conta
+                    </a>
+                  </li>
+                  <li ng-show="navBarC.isAdmin()">
+                    <a ng-href="admin/tournament" style="cursor: pointer" ng-click="navBarC.hideNavBar()">
+                      <i style="color: #801515" class="fa fa-fw fa-user-secret"></i> Administrador
+                    </a>
+                  </li>
+                  <li class="divider" ng-show="navBarC.isAdmin()"></li>
+                  <li>
+                    <a ng-href="" style="cursor: pointer" ng-click="authC.logout(); navBarC.hideNavBar()">
+                      <i class="fa fa-fw fa-sign-out"></i> Logout
+                    </a>
+                  </li>
+  <!--                <li class="divider"></li>
+                  <li>
+                    <a>
+                      {{authC.user.name}}
+                    </a>
+                  </li>-->
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+      </ul>
+
+    </div>
+
+  </nav>
+
+  <div ng-include="'app/components/auth/_auth_modal.html'"></div>
+
+</div>

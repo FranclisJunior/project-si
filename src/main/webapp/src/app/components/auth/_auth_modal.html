@@ -1,0 +1,126 @@
+<div id="auth-modal" class="aside right" role="dialog">
+
+  <div class="aside-dialog">
+
+    <div class="aside-content">
+
+      <div class="aside-body">
+
+        <button type="button" class="close" ng-click="authC.closeAuthModal()" style=" margin: 10px">
+          <span aria-hidden="true" style="color: lightgray;">×</span>
+        </button>
+
+        <div class="logo-container">
+          <img class="logo-container" src="assets/images/logo.png">
+        </div>
+
+
+        <div class="auth-form">
+
+          <ul class="nav nav-justified">
+            <li ng-click="authC.authActiveTab='login'" ng-class="{active: (authC.authActiveTab === 'login')}">
+              <a><span class="ng-scope" >Entrar</span></a>
+            </li>
+            <li ng-click="authC.authActiveTab='singup'" ng-class="{active: (authC.authActiveTab === 'singup')}">
+              <a><span class="ng-scope">Cadastrar</span></a>
+            </li>
+          </ul>
+
+          <!-- form login -->
+          <div ng-show="authC.authActiveTab === 'login'" style="margin-top: 20px">
+
+            <button ng-click="authC.loginFacebook()" class="btn btn-primary btn-block">
+              <i class="fa fa-facebook"></i> Entrar com Facebook
+            </button>
+
+            <!--
+            <button ng-click="" class="btn btn-twitter btn-block">
+              <i class="fa fa-twitter"></i> Entrar com Twitter
+            </button>
+            -->
+
+            <div class="or-line ng-scope">
+              <span class="ng-scope"> Ou </span>
+            </div>
+
+            <form class="form-container form-auth">
+
+              <div class="form-group">
+                <input type="text" class="form-control" name="email" autofocus
+                       ng-model="authC.loginUser.email" placeholder="Email">
+              </div>
+
+              <div class="form-group">
+                <input type="password" class="form-control" name="password"
+                       ng-model="authC.loginUser.password" placeholder="Senha">
+              </div>
+
+              <button class="btn btn-primary btn-block" name="btnLogin" type="submit"
+                      ng-click="authC.login(authC.loginUser)">
+                <span class="ng-scope">Entrar</span>
+              </button>
+
+              <div style="margin-top: 10px">
+                <a ng-href="" target="_blank" style="color: white;">Esqueceu sua senha?</a>
+              </div>
+
+            </form>
+
+          </div>
+
+          <!-- form sing-up -->
+          <div ng-show="authC.authActiveTab === 'singup'" style="margin-top: 20px">
+
+            <form class="form-container form-auth" name="formRegisterUser" autocomplete="off">
+
+              <div class="form-group">
+                <input type="text" class="form-control" name="fullName" minlength="5"
+                       ng-model="authC.newUser.name" ng-required="true" placeholder="Nome Completo">
+                <div role="alert" ng-show="formRegisterUser.fullName.$touched">
+                  <span style="color: red; font-size: 10px" ng-show="formRegisterUser.fullName.$error.required">Campo Requerido</span>
+                  <span style="color: red; font-size: 10px" ng-show="formRegisterUser.fullName.$error.minlength">Tamanho minimo 5 digitos</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <input type="email" class="form-control" name="email"
+                       ng-model="authC.newUser.email" ng-required="true" placeholder="Email">
+                <div role="alert" ng-show="formRegisterUser.email.$touched">
+                  <span style="color: red; font-size: 10px" ng-show="formRegisterUser.email.$error.required">Campo requerido</span>
+                  <span style="color: red; font-size: 10px" ng-show="formRegisterUser.email.$error.email">Email invalido</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <input type="password" class="form-control" name="password" minlength="8"
+                       ng-model="authC.newUser.password" ng-required="true" placeholder="Senha">
+                <div role="alert" ng-show="formRegisterUser.password.$touched">
+                  <span style="color: red; font-size: 10px" ng-show="formRegisterUser.password.$error.required">Campo requerido</span>
+                  <span style="color: red; font-size: 10px" ng-show="formRegisterUser.password.$error.minlength">Senha minima 8 digitos</span>
+                </div>
+              </div>
+
+              <button class="btn btn-primary btn-block" name="btnLogin" type="submit"
+                  ng-disabled="formRegisterUser.$invalid" ng-click="authC.register(authC.newUser)">
+                <span class="ng-scope">Cadastrar</span>
+              </button>
+
+              <div style="margin-top: 10px">
+                <p style="color: white">
+                  Ao criar uma contra, eu aceito os <a ng-href="/term-of-service" target="_blank">Termos de Serviço</a>
+                  e a <a ng-href="/privacy-policy" target="_blank">Política de Privacidade</a>
+                </p>
+              </div>
+            </form>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

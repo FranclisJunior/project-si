@@ -1,0 +1,21 @@
+.container-contact {
+  padding: 40px 0;
+}
+
+.container-contact .title-section h1 {
+  text-transform: uppercase;
+  font-family: 'Teko';
+  font-size: 48px;
+  color: black;
+  margin: 0;
+}
+
+.container-contact .title-section p {
+  margin-bottom: 20px;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5), only screen and (max-width: 767px) {
+  .container-contact {
+    padding: 40px 10px 20px 10px;
+  }
+}

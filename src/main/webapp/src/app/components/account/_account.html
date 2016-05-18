@@ -1,0 +1,18 @@
+<div class="container-account" ng-controller="AccountController as accountC">
+
+  <div id="account-menu">
+    <ul class="nav nav-pills" style="border-bottom: 1px solid lightgrey">
+      <li ng-click="accountC.accountActiveTab='me'"
+          ng-class="{active: (accountC.accountActiveTab==='me')}">
+        <a ng-href="/account/me">Minha Conta</a>
+      </li>
+      <li ng-click="accountC.accountActiveTab='project'"
+          ng-class="{active: (accountC.accountActiveTab==='project')}">
+        <a ng-href="/account/game-id">Projetos</a>
+      </li>
+    </ul>
+  </div>
+
+  <div ng-if="accountC.accountActiveTab==='me'" ng-include="'app/components/account/_account_infos.html'"></div>
+
+</div>

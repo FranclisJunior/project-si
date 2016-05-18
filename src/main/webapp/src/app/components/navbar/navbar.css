@@ -1,0 +1,229 @@
+.navbar {
+  z-index: 8888;
+  -webkit-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.5);
+  -moz-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.5);
+  box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.5);
+}
+.top-nav > li > a, .top-nav > li > a:hover,
+.top-nav > li > a:focus, .top-nav .open > a:focus {
+  margin: 0;
+  cursor: pointer;
+  background-color: transparent;
+  color: #AA3939;
+}
+
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+  cursor: pointer;
+  background-color: transparent;
+  color: #AA3939;
+}
+
+.navbar-collapse {
+  padding: 0;
+}
+
+.navbar-brand {
+  float: left;
+  padding: 5px 40px 0 40px;
+  font-size: 20px;
+  line-height: 18px;
+  height: 60px;
+}
+
+.navbar-nav {
+  float: left;
+  margin: 0;
+}
+
+.navbar-right {
+  float: right !important;
+  max-height: 60px;
+  margin-right: 0;
+}
+
+.menu-auth {
+  max-height: 60px;
+  padding: 15px 20px 0 0;
+  vertical-align: middle;
+}
+
+@media screen and (min-width: 768px) {
+
+  .brand {
+    vertical-align: middle;
+    height: 120px;
+    float: left;
+  }
+
+  .panel-auth {
+    float: right;
+  }
+
+  .navbar-nav {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+  }
+
+  .navbar {
+    list-style: none;
+    background: white;
+    border-radius: 0;
+    min-height: 60px;
+    max-height: 60px;
+    border: none;
+  }
+
+  .navbar-active {
+    /*background: #AA3939;!*#152E6D;*!*/
+    /*background: rgba(0, 0, 0, 0.7);*/
+    color: #AA3939 !important;
+  }
+
+  .navbar-nav > li > a {
+    line-height: normal;
+    color: grey;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: "Teko";
+    cursor: pointer;
+    text-align: center;
+    min-height: 60px;
+    max-height: 60px;
+    width: 115px;
+    padding: 20px 10px 0 10px;
+  }
+
+  .navbar-nav {
+    table-layout: fixed;
+    min-height: 60px;
+    margin: auto;
+  }
+
+  .navbar-nav > li > a:hover {
+    /*color: #AA3939;!*#152E6D;*!*/
+    /*background: rgba(0, 0, 0, 0.3);*/
+    background: transparent;
+    color: #AA3939;
+  }
+
+  .navbar-nav > li > a:focus {
+    /*background: #AA3939;!*#152E6D;*!*/
+    /*background: rgba(0, 0, 0, 0.5);*/
+    background: transparent;
+    color: #AA3939;
+  }
+
+  .navbar-right > li > a {
+    line-height: normal;
+    color: #AA3939;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: "Teko";
+    cursor: pointer;
+    text-align: center;
+    min-height: 60px;
+    width: 110px;
+    padding: 20px 10px 0 10px;
+  }
+
+  .navbar-right > li > a:hover {
+    /*background: #AA3939;!*#152E6D;*!*/
+    /*background: rgba(0, 0, 0, 0.3);*/
+    color: #AA3939;
+    max-height: 60px;
+  }
+
+  .navbar-right > li > a:focus {
+    /*background: #AA3939;!*#152E6D;*!*/
+    /*background: rgba(0, 0, 0, 0.5);*/
+    color: #AA3939;
+    max-height: 60px;
+  }
+
+  /*.navbar-nav li.upper-level-nav {
+    border-left: 1px #253F81 solid;
+  }
+
+  .navbar-nav li.upper-level-nav:last-child {
+    border-right: 1px #253F81 solid;
+  }*/
+
+  .navbar-right li.upper-level-nav {
+    float: right;
+  }
+
+}
+
+@media
+only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (-o-min-device-pixel-ratio: 3/2),
+only screen and (min--moz-device-pixel-ratio: 1.5),
+only screen and (min-device-pixel-ratio: 1.5),
+only screen and (max-width: 767px) {
+
+  .panel-auth {
+    float: right;
+    margin-top: 20px;
+    padding-right: 10px;
+  }
+
+  .navbar-brand {
+    float: left;
+    padding: 5px 20px 0 20px;
+    font-size: 20px;
+    line-height: 18px;
+    height: 60px;
+  }
+
+  .navbar {
+    list-style: none;
+    margin: 0;
+    border: none;
+    background: #152E6D;
+  }
+
+  .navbar-right > li > a {
+    line-height: normal;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: "Teko";
+    cursor: pointer;
+    text-align: center;
+    min-height: 60px;
+    max-height: 60px;
+    width: 115px;
+    padding: 18px 10px 0 10px;
+  }
+
+  .navbar-nav > li > a {
+    line-height: normal;
+    text-transform: uppercase;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: "Teko";
+    cursor: pointer;
+    text-align: center;
+    min-height: 60px;
+    max-height: 60px;
+    width: 115px;
+    padding: 18px 10px 0 10px;
+  }
+
+  .navbar-nav > li > a:hover {
+    background: transparent;
+  }
+
+  .navbar-nav > li > a:focus {
+    background: transparent;
+    font-size: 22px;
+  }
+
+  .dropdown-menu {
+    position: static;
+    margin: 0;
+  }
+
+}

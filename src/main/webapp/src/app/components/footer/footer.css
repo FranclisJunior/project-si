@@ -1,0 +1,100 @@
+footer {
+  clear: both;
+  background: #550000/*#0A193E*/;
+}
+
+.footer-icons {
+  height: 37px;
+  padding-right: 15px;
+}
+
+.footer-contact {
+  height: 100%;
+  line-height: 110px;
+  font-size: 12px;
+  text-transform: uppercase;
+  padding: 0;
+}
+
+.footer-contact a {
+  color: white;
+}
+
+.footer-contact a:first-child::after {
+  content: "";
+  margin: 0 15px;
+  border-left: 1px solid #801515/*#152E6D*/;
+}
+
+.footer-copyright {
+  background: #801515/*#152E6D*/;
+  height: 40px;
+  line-height: 40px;
+  color: white;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.footer-copyright span {
+  padding: 0 10px;
+}
+
+.footer-social {
+  height: 100%;
+  line-height: 110px;
+  padding: 0;
+}
+
+.footer-social .row {
+  margin: 0;
+}
+
+.footer-social .separator-footer {
+  margin: 0 15px;
+}
+
+@media only screen and (min-width: 768px) {
+
+  .footer-social-container {
+    height: 115px;
+  }
+
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5), only screen and (max-width: 767px) {
+
+  .footer-social, .footer-contact {
+    text-align: center;
+    line-height: 45px;
+  }
+
+  .footer-contact {
+    padding: 15px 0 5px;
+  }
+
+  .footer-social {
+    padding-bottom: 15px;
+  }
+
+  .footer-social .follow-us {
+    display: none;
+  }
+
+  .footer-social .separator-footer {
+    display: none;
+  }
+  .footer-icons {
+    height: 27px;
+  }
+
+  .footer-copyright {
+    padding: 10px 0;
+    font-size: 10px;
+    line-height: 18px;
+  }
+
+  .footer-copyright span {
+    display: none;
+  }
+
+}

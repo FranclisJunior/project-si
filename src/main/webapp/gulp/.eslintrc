@@ -1,0 +1,13 @@
+{
+  "rules": {
+    "no-use-before-define": [1, 'nofunc']
+  },
+  "globals": {
+    "jQuery": false,
+    "$": true,
+    "angular": true
+  },
+  "env": {
+    "node": true
+  }
+}
