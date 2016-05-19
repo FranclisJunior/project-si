@@ -1,7 +1,8 @@
 (function () {
   "use strict";
 
-  angular.module('we-are')
+  angular
+    .module('project-si')
     .directive('formatDate', formatDate);
 
   function formatDate() {

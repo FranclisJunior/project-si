@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 8080
 spring:
   datasource:
     driverClassName: com.mysql.jdbc.Driver
@@ -16,5 +16,5 @@ spring:
   security:
     sessions: NEVER
     basic:
-      realm: Turmalina
+      realm: Project-SI
  

@@ -1,18 +1,9 @@
 package br.ufpb.dcx.project.si.service;
 
-import java.util.Arrays;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import br.ufpb.dcx.project.si.domain.Auth;
 import br.ufpb.dcx.project.si.domain.User;
 import br.ufpb.dcx.project.si.repository.UserRepository;
 import br.ufpb.dcx.project.si.rest.config.EventException;
@@ -24,28 +15,40 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserRepository repository;
 
-	public User authenticateUser(Auth auth) throws EventException {
-		User user = repository.findByUsernameAndPassword(auth.getLogin(), auth.getPassword());
-		if (user == null) {
-			throw new EventException(ErrorMessages.ACCESS_DENIED, HttpStatus.UNAUTHORIZED);
-		} else {
-			GrantedAuthority authority = new SimpleGrantedAuthority(user.getRole());
-			UserDetails userDetails = (UserDetails) new org.springframework.security.core.userdetails.User(
-					user.getUsername(), 
-					user.getPassword(), 
-					Arrays.asList(authority));
-			
-			Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, userDetails.getPassword(), userDetails.getAuthorities());
-
-			SecurityContextHolder.getContext().setAuthentication(authentication);
-			
-			return getCurrentUserAuthenticated();
+	public User createUser(User user) throws EventException {
+		
+		User userDB = repository.findByEmail(user.getEmail());
+		if (userDB != null) {
+			throw new EventException(ErrorMessages.HAS_USER_WITH_EMAIL, HttpStatus.BAD_REQUEST);
 		}
+				
+		User userCreated = repository.saveAndFlush(user);
+		return returnUserWithoutPassword(userCreated);
+	}
+
+	public User getUser(Integer id) throws EventException {
+		User userDB = repository.findOne(id);
+		if (userDB == null) {
+			throw new EventException(ErrorMessages.USER_NOT_FOUND, HttpStatus.NOT_FOUND);
+		}
+		return returnUserWithoutPassword(userDB);
+	}
+
+	public User updateUser(Integer userId, User user) throws EventException {
+		
+		User userDB = repository.findOne(user.getId());
+		if (userDB == null) {
+			throw new EventException(ErrorMessages.USER_NOT_FOUND, HttpStatus.NOT_FOUND);
+		}
+		
+		user.setPassword(userDB.getPassword());
+		User userUpdated = repository.saveAndFlush(user);
+		return returnUserWithoutPassword(userUpdated);
 	}
 	
-	private User getCurrentUserAuthenticated() {
-		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		return repository.findByUsername(userDetails.getUsername());
+	private User returnUserWithoutPassword(User user) {
+		user.setPassword(null);
+		return user;
 	}
 
 }

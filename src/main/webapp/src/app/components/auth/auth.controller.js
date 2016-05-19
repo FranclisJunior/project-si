@@ -2,11 +2,11 @@
   "use strict";
 
   angular
-    .module("we-are")
+    .module("project-si")
     .controller("AuthController", AuthController);
 
   /** @ngInject */
-  function AuthController($scope, $location, $auth, toastr, FacebookService, AuthService, SessionService) {
+  function AuthController($scope, $location, toastr, AuthService, UserService, SessionService) {
 
     var vm = this;
 
@@ -22,7 +22,7 @@
     });
 
     var redirectToAccountPage = function () {
-      if (vm.user.nickname === null) {
+      if (vm.user.matriculation === null) {
         angular.element("#navBarItems li a").each(function(){
           angular.element(this).removeClass("navbar-active");
         });
@@ -31,39 +31,9 @@
       angular.element(AUTH_MODAL).hide("slide");
     };
 
-    var loadFacebookProfile = function () {
-      FacebookService.me(function (response) {
-        vm.user = {};
-        vm.user.email = response.email;
-        vm.user.name = response.name;
-        vm.user.city = response.location.name;
-        vm.user.birthday = response.birthday;
-        vm.user.fid = response.id;
-        vm.user.password = response.id;
-        vm.user.picture = "https://graph.facebook.com/v2.5/" + response.id + "/picture?width=300&height=300";
-
-        var auth = {
-          email: response.email,
-          fid: response.id,
-          password: response.id
-        };
-        $auth.login(auth) //Verifica se o usuario ja esta registrado no BD
-          .then(function(result) {
-            vm.user = result.data;
-            SessionService.setAuthenticatedUser(vm.user);
-            redirectToAccountPage();
-          }, function (error) {
-            if(error.status === 401) {
-              vm.user.social_facebook = "www.facebook.com/" + vm.user.fid;
-              vm.register(vm.user); //Caso nao esteja no BD manda registrar o usuario
-            }
-          })
-      });
-    };
-
     vm.user = SessionService.getAuthenticatedUser();
     vm.authActiveTab = undefined;
-    vm.loginUser = {};
+    vm.auth = {};
     vm.newUser = {};
 
     vm.showAuthModal = function (menu) {
@@ -77,70 +47,40 @@
     };
 
     vm.login = function (auth) {
-      $auth.login(auth)
+      AuthService.login(auth)
         .then(function(result) {
           vm.user = result.data;
           SessionService.setAuthenticatedUser(vm.user);
           redirectToAccountPage();
-          vm.loginUser = {};
+          vm.auth = {};
         }, function (error) {
           if(error.status === 401) {
             toastr.error("Email ou senha invalida", "Erro");
           } else {
-            toastr.error("Tente novamente, se o erro pesistir entre em contato com thiago@groweb.com.br", "Erro");
+            toastr.error("Tente novamente, se o erro pesistir entre em contato com o administrador", "Erro");
           }
         });
     };
 
     vm.register = function (user) {
-      if (angular.isUndefined(user.picture)) {
-        user.picture = "none";
-      }
-
-      AuthService.register(user)
+      user.role = "USER";
+      UserService.createUser(user)
         .then(function(result) {
           vm.user = result.data;
           var auth = {
-            email: user.email,
-            password: user.password,
-            fid: user.fid
+            login: user.email,
+            password: user.password
           };
           vm.login(auth);
-      }, function(error) {
-          if(error.data.error.status === 21){
-            toastr.error("Já existe usuario com este email", "Erro")
-          } else {
-            toastr.error(error);
-          }
-      });
+        }, function(error) {
+            toastr.error(error.data.message);
+        });
     };
 
     vm.logout = function() {
       vm.user = undefined;
       SessionService.clear();
-      $auth.logout();
-      FacebookService.getLoginStatus(function(response) {
-        if (response.status == 'connected') {
-          FacebookService.logout();
-        }
-      });
+      AuthService.logout();
     };
-
-    vm.loginFacebook = function () {
-      FacebookService.login(function (response) {
-        if (response.status == 'connected') {
-          loadFacebookProfile();
-        }
-      });
-    };
-
-    vm.registerFacebook = function () {
-      FacebookService.login(function (response) {
-        if (response.status == 'connected') {
-          loadFacebookProfile();
-        }
-      });
-    };
-
   }
 })();

@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('we-are', [
+    .module('project-si', [
       'ngResource',
       'ngTouch',
       'ngAnimate',
@@ -18,7 +18,6 @@
       'froala',
       'ui.bootstrap.datetimepicker',
       'NgSwitchery',
-      'satellizer',
       'angularUtils.directives.dirPagination'
     ]);
 })();

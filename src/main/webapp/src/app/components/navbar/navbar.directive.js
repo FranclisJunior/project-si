@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('we-are')
+    .module('project-si')
     .directive('topNavBar', topNavBar);
 
   /** @ngInject */

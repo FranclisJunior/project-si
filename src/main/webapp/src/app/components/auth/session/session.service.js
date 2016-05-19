@@ -1,7 +1,7 @@
 (function () {
   "use strict";
   angular
-    .module("we-are")
+    .module("project-si")
     .service("SessionService", SessionService);
 
   /* @ngInject */

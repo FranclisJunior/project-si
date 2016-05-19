@@ -2,7 +2,7 @@
   "use strict";
 
   angular
-    .module("we-are")
+    .module("project-si")
     .factory("AuthService", AuthService);
 
   /** @ngInject */
@@ -38,8 +38,12 @@
       return $http.post(apiAddress + "/signup", user);
     };
 
-    var auth = function (auth) {
+    var login = function (auth) {
       return $http.post(apiAddress + "/auth", auth);
+    };
+
+    var logout = function () {
+      return $http.post(apiAddress + "/logout");
     };
 
     return {
@@ -48,7 +52,8 @@
       openAuthModal: openAuthModal,
       onOpenAuthModal: onOpenAuthModal,
       register: registerUser,
-      auth: auth
+      login: login,
+      logout: logout
     };
   }
 })();

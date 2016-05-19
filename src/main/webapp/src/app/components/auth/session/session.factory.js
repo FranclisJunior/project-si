@@ -2,14 +2,14 @@
   "use strict";
 
   angular
-    .module("we-are")
+    .module("project-si")
     .factory("appSession", AppSession);
 
   /* @ngInject */
   function AppSession($window) {
     "use strict";
 
-    var appName = "we-are";
+    var appName = "project-si";
     var appStores = {};
     var api;
 

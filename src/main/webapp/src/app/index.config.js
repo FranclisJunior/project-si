@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('we-are')
+    .module('project-si')
     .config(config)
     .config(facebookConfig)
     .config(toastConfig)
@@ -39,6 +39,7 @@
   function configProvider($httpProvider) {
     $httpProvider.interceptors.push("authInterceptor");
     $httpProvider.defaults.useXDomain = true;
+    //$httpProvider.defaults.withCredentials = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
   }
 

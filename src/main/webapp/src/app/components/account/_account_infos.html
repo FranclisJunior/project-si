@@ -8,11 +8,11 @@
       </div>
 
       <div class="form-group has-feedback">
-        <label class="control-label" for="userNickname">
-          Nickname
+        <label class="control-label" for="userMatriculation">
+          Matrícula
         </label>
-        <input id="userNickname" type="text" class="form-control"
-              ng-model="accountC.user.nickname" ng-required="true" placeholder="Nickname">
+        <input id="userMatriculation" type="text" class="form-control"
+              ng-model="accountC.user.matriculation" ng-required="true" placeholder="Matrícula">
       </div>
 
       <div class="form-group has-feedback">
@@ -24,7 +24,7 @@
       </div>
 
       <button class="btn btn-primary btn-lg" type="button" ng-click="accountC.showModalChangePassword()"
-              ng-style="accountC.user.fid === null ? {'width': '215px'} : {'display': 'none'}">
+              ng-style="{'width': '215px'}">
         <span class="ng-scope">Alterar senha</span>
       </button>
     </form>
@@ -50,11 +50,11 @@
           Data de Nascimento
         </label>
         <input id="userBirthday" type="text" class="form-control"  placeholder="Data Nascimento"
-               ng-model="accountC.user.birthday" bs-datepicker data-autoclose="1" ng-required="true">
+               ng-model="accountC.user.dateBirth" bs-datepicker data-autoclose="1" ng-required="true">
       </div>
 
       <div class="form-group has-feedback">
-        <label class="control-label" for="userBirthday">
+        <label class="control-label" for="userAddress">
           Endereço
         </label>
         <input id="userAddress" class="form-control" placeholder="Endereço"
@@ -75,7 +75,7 @@
           <label class="control-label" for="userUF">
             UF
           </label>
-          <select id="userUF" ng-model="accountC.user.state" class="form-control">
+          <select id="userUF" ng-model="accountC.user.uf" class="form-control">
             <option ng-repeat="uf in accountC.ufs" value="{{uf}}" required>
                     {{uf}}
             </option>
@@ -93,7 +93,7 @@
           Site
         </label>
         <input id="userSite" type="text" class="form-control" http-prefix
-               placeholder="Site ex: www.wearesports.com.br" ng-model="accountC.user.social_www">
+               placeholder="Site ex: www.meusite.com.br" ng-model="accountC.user.socialSite">
       </div>
 
       <div class="form-group has-feedback">
@@ -101,23 +101,7 @@
           Facebook
         </label>
         <input id="userFace" type="text" class="form-control" http-prefix
-               placeholder="Facebook ex: www.facebook.com/junior.galdino.74" ng-model="accountC.user.social_facebook">
-      </div>
-
-      <div class="form-group has-feedback">
-        <label class="control-label" for="userTwitter">
-          Twitter
-        </label>
-        <input id="userTwitter" type="text" class="form-control" http-prefix
-               placeholder="Twitter ex: www.twitter.com/wasoficial" ng-model="accountC.user.social_twitter">
-      </div>
-
-      <div class="form-group has-feedback">
-        <label class="control-label" for="userYouTube">
-          You Tube
-        </label>
-        <input id="userYouTube" type="text" class="form-control" http-prefix
-               placeholder="You Tube ex: www.youtube.com/channel/UCk-cLjdVWwZtl3M6AMY9YiA" ng-model="accountC.user.social_youtube">
+               placeholder="Facebook ex: www.facebook.com/nome.sobrenome" ng-model="accountC.user.socialFacebook">
       </div>
 
       <div class="form-group has-feedback">
@@ -125,7 +109,7 @@
           Biografia
         </label>
         <textarea id="userBio" type="text" class="form-control" rows="3" style="resize: none"
-               placeholder="Conte um pouco sobre você" ng-model="accountC.user.bio">
+               placeholder="Conte um pouco sobre você" ng-model="accountC.user.socialBio">
         </textarea>
       </div>
 
@@ -147,20 +131,20 @@
     </div>
 
     <div class="container-picture">
-      <img class="picture"  ng-src="{{accountC.user.picture !== 'none' ? accountC.user.picture : 'assets/images/background-picture.png'}}">
+      <img class="picture"  ng-src="assets/images/no-photo.jpg">
 
       <button class="btn btn-primary btn-lg btn" style="width: 138px; margin-top: 10px"
               ng-click="accountC.showModalChoosePicture()">
         <span class="ng-scope">Alterar</span>
       </button>
       <button class="btn btn-secondary btn-lg" style="width: 138px; margin-top: 10px"
-              ng-click="accountC.deleteUserPicture()" ng-disabled="accountC.user.picture === 'none'">
+              ng-click="accountC.deleteUserPicture()" ng-disabled="true">
         <span class="ng-scope">Excluir</span>
       </button>
     </div>
   </div>
 
   <div ng-include="'app/components/account/_modal_choose_user_picture.html'"></div>
-  <div ng-if="accountC.user.fid === null" ng-include="'app/components/account/_modal_change_password.html'"></div>
+  <div ng-include="'app/components/account/_modal_change_password.html'"></div>
 
 </div>

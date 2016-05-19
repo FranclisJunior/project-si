@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('we-are')
+    .module('project-si')
     .controller('HomeController', HomeController);
 
   /** @ngInject */

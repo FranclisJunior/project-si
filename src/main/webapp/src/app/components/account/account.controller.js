@@ -2,11 +2,11 @@
   "use strict";
 
   angular
-    .module("we-are")
+    .module("project-si")
     .controller("AccountController", AccountController);
 
   /** @ngInject */
-  function AccountController($stateParams, $scope, $location, $timeout, AccountService, AuthService, SessionService, UtilService, toastr) {
+  function AccountController($stateParams, $scope, $location, $timeout, AccountService, AuthService, SessionService, toastr) {
 
 
     if(!SessionService.isLogged()) {
@@ -59,12 +59,13 @@
           AuthService.notifyUserChanged(vm.user);
           toastr.success("Dados atualizados");
         }, function(error) {
-          toastr.error(error.data.error.message);
+          toastr.error(error.data.message);
         })
     };
 
     vm.changeUserPicture = function () {
-      var file = UtilService.dataUriToFile(vm.croppedPicture);
+      toastr.info("Funcionalidade em desenvolvimento", "Atenção");
+     /* var file = UtilService.dataUriToFile(vm.croppedPicture);
       var fileName = "picture." + vm.croppedPicture.split(',')[0].split(':')[1].split(';')[0].split('/')[1];
       angular.element(BUTTON_SAVE_PICTURE).button('loading');
 
@@ -77,16 +78,17 @@
           toastr.error(error.data.error.message, "Erro");
         }).finally(function () {
          vm.clearModalChoosePicture();
-        });
+        });*/
     };
 
     vm.deleteUserPicture = function () {
-      vm.user.picture = "none";
-      vm.updateUser();
+      toastr.info("Funcionalidade em desenvolvimento", "Atenção");
     };
 
     vm.changePassword = function () {
-      AccountService.changePassword(vm.user.id, vm.userPassword)
+      toastr.info("Funcionalidade em desenvolvimento", "Atenção");
+
+/*      AccountService.changePassword(vm.user.id, vm.userPassword)
         .then(function() {
           toastr.success("Senha atualizada");
         }, function(error) {
@@ -97,11 +99,7 @@
           }
         }).finally(function () {
           vm.clearModalChangePassword();
-        })
-    };
-
-    vm.saveGameID = function () {
-      toastr.info("Not implemented");
+        })*/
     };
 
     vm.showModalChangePassword = function () {

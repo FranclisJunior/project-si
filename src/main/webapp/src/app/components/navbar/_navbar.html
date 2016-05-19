@@ -4,7 +4,7 @@
 
     <div class="navbar-header">
 
-      <a class="navbar-brand ng-scope" ng-href="/home" ng-click="navBarC.setNavBarActive('#tabHome')">
+      <a class="navbar-brand ng-scope" ng-href="#/home" ng-click="navBarC.setNavBarActive('#tabHome')">
         <img alt="brand" src="assets/images/logo-navbar.png">
       </a>
 
@@ -23,7 +23,7 @@
       <ul id="navBarItems" class="nav navbar-nav">
 
         <li class="upper-level-nav">
-          <a id="tabHome" ng-href="/home" ng-click="navBarC.setNavBarActive('#tabHome')">
+          <a id="tabHome" ng-href="#/home" ng-click="navBarC.setNavBarActive('#tabHome')">
             Home
           </a>
         </li>
@@ -47,18 +47,18 @@
 
                 <a class="dropdown-toggle" data-toggle="dropdown" style="padding: 10px 5px 10px 5px">
                   <img style="width: 40px; height: 40px"
-                       src="{{authC.user.picture !== 'none' ? authC.user.picture : '/assets/images/background-picture.png'}}">
+                       ng-src="assets/images/background-picture.png">
                   <i style="padding: 10px" class="fa fa-caret-down"></i>
                 </a>
 
                 <ul class="dropdown-menu">
                   <li>
-                    <a ng-href="/account/me" ng-click="navBarC.hideNavBar();">
+                    <a ng-href="#/account/me" ng-click="navBarC.hideNavBar();">
                       <i style="color: #801515" class="fa fa-fw fa-user"></i> Minha Conta
                     </a>
                   </li>
                   <li ng-show="navBarC.isAdmin()">
-                    <a ng-href="admin/tournament" style="cursor: pointer" ng-click="navBarC.hideNavBar()">
+                    <a ng-href="" style="cursor: pointer" ng-click="navBarC.hideNavBar()">
                       <i style="color: #801515" class="fa fa-fw fa-user-secret"></i> Administrador
                     </a>
                   </li>

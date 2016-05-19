@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('we-are')
+  angular.module('project-si')
     .factory("authInterceptor", authInterceptor);
 
   /** @ngInject */
@@ -10,12 +10,10 @@
     function responseErrorInterception(rejection) {
       if ((rejection.status === 401 || rejection.status === 400) &&
           (rejection.data.error === 'token_expired' || rejection.data.error === 'token_not_provided' || rejection.data.error === 'token_invalid')) {
-        var $auth = $injector.get('$auth');
         var toaster = $injector.get('toastr');
         var AuthService = $injector.get('AuthService');
 
         SessionService.clear();
-        $auth.logout();
         FacebookService.getLoginStatus(function(response) {
           if (response.status == 'connected') {
             FacebookService.logout();

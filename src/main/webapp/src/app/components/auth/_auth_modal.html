@@ -29,34 +29,20 @@
           <!-- form login -->
           <div ng-show="authC.authActiveTab === 'login'" style="margin-top: 20px">
 
-            <button ng-click="authC.loginFacebook()" class="btn btn-primary btn-block">
-              <i class="fa fa-facebook"></i> Entrar com Facebook
-            </button>
-
-            <!--
-            <button ng-click="" class="btn btn-twitter btn-block">
-              <i class="fa fa-twitter"></i> Entrar com Twitter
-            </button>
-            -->
-
-            <div class="or-line ng-scope">
-              <span class="ng-scope"> Ou </span>
-            </div>
-
             <form class="form-container form-auth">
 
               <div class="form-group">
                 <input type="text" class="form-control" name="email" autofocus
-                       ng-model="authC.loginUser.email" placeholder="Email">
+                       ng-model="authC.auth.login" placeholder="Email">
               </div>
 
               <div class="form-group">
                 <input type="password" class="form-control" name="password"
-                       ng-model="authC.loginUser.password" placeholder="Senha">
+                       ng-model="authC.auth.password" placeholder="Senha">
               </div>
 
               <button class="btn btn-primary btn-block" name="btnLogin" type="submit"
-                      ng-click="authC.login(authC.loginUser)">
+                      ng-click="authC.login(authC.auth)">
                 <span class="ng-scope">Entrar</span>
               </button>
 
